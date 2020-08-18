@@ -1,9 +1,8 @@
 package ninjasul.web.dto;
 
-    import lombok.Builder;
-    import lombok.Getter;
-    import lombok.NoArgsConstructor;
-    import ninjasul.domain.posts.Posts;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 @Getter
 @NoArgsConstructor

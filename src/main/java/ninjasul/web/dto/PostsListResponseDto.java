@@ -1,21 +1,21 @@
 package ninjasul.web.dto;
 
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import ninjasul.domain.posts.Posts;
 
+import java.time.LocalDateTime;
+
 @Getter
-@NoArgsConstructor
-public class PostsResponseDto {
+public class PostsListResponseDto {
     private Long id;
     private String title;
     private String author;
-    private String content;
+    private LocalDateTime modifiedDate;
 
-    public PostsResponseDto(Posts entity) {
+    public PostsListResponseDto(Posts entity) {
         this.id = entity.getId();
         this.title = entity.getTitle();
         this.author = entity.getAuthor();
-        this.content = entity.getContent();
+        this.modifiedDate = entity.getModifiedDate();
     }
 }
