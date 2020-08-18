@@ -1,4 +1,3 @@
-package ninjasul.domain;/*
 package ninjasul.domain;
 
 import lombok.Getter;
@@ -23,4 +22,4 @@ public abstract class BaseTimeEntity {
     @LastModifiedDate
     private LocalDateTime modifiedDate;
 }
-*/
+
