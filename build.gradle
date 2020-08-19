@@ -24,6 +24,7 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-oauth2-client'
 	compile 'org.springframework.boot:spring-boot-starter-mustache'
 	compile 'org.springframework.boot:spring-boot-devtools'
+	compile 'org.springframework.session:spring-session-jdbc'
 	compile 'com.google.code.gson:gson:2.8.6'
 	compile 'org.projectlombok:lombok'
 	compile 'com.h2database:h2'
