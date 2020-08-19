@@ -14,6 +14,8 @@ import java.util.Map;
  */
 @Getter
 public class OAuthAttributes {
+    private static final String NAVER_REGISTRATION_ID = "naver";
+
     private Map<String, Object> attributes;
     private String nameAttributeKey;
     private String name;
@@ -40,7 +42,23 @@ public class OAuthAttributes {
         String userNameAttributeName,
         Map<String, Object> attributes
     ) {
+        if (NAVER_REGISTRATION_ID.equals(registrationId)) {
+            return ofNaver("id", attributes);
+        }
+
         return ofGoogle(userNameAttributeName, attributes);
+    }
+
+    private static OAuthAttributes ofNaver(String userNameAttributeName, Map<String, Object> attributes) {
+        Map<String, Object> response = (Map<String, Object>) attributes.get("response");
+
+        return OAuthAttributes.builder()
+            .name((String) response.get("name"))
+            .email((String) response.get("email"))
+            .picture((String) response.get("profileImage"))
+            .attributes(response)
+            .nameAttributeKey(userNameAttributeName)
+            .build();
     }
 
     private static OAuthAttributes ofGoogle(
