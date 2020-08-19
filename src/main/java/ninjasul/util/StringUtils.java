@@ -8,8 +8,8 @@ import com.google.gson.JsonParser;
 public class StringUtils {
     private static final Gson gson = new GsonBuilder().setPrettyPrinting().create();
 
-    public static <T> String toPrettyJson( T json ) {
-        if( json instanceof String ) {
+    public static <T> String toPrettyJson(T json) {
+        if (json instanceof String) {
             JsonParser parser = new JsonParser();
             JsonObject jsonObj = parser.parse(String.valueOf(json)).getAsJsonObject();
             String prettyJson = gson.toJson(jsonObj);

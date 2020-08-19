@@ -29,29 +29,29 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
              * anyRequest(): 설정 값 이의외 나머지 URL에 대한 처리
              */
             .authorizeRequests()
-                .antMatchers(getStaticResourceUrls()).permitAll()
-                .antMatchers("/api/v1/**").hasRole(Role.USER.name())
-                .anyRequest().authenticated()
+            .antMatchers(getStaticResourceUrls()).permitAll()
+            .antMatchers("/api/v1/**").hasRole(Role.USER.name())
+            .anyRequest().authenticated()
             /**
              * 4. 로그아웃 관련 설정
              * 로그 아웃 성공 시 "/" 경로로 이동
              */
             .and()
-                .logout()
-                    .logoutSuccessUrl("/")
+            .logout()
+            .logoutSuccessUrl("/")
             /**
              * 5. OAuth2 로그인 설정
              * oauth2Login(): OAuth2 로그인 기능 설정 시작점
              * userService(): 소셜 로그인 성공 시 후속 조치를 진행 할 UserService 인터페이스 구현체를 등록
              */
             .and()
-                .oauth2Login()
-                    .userInfoEndpoint()
-                        .userService(customOAuth2UserService);
+            .oauth2Login()
+            .userInfoEndpoint()
+            .userService(customOAuth2UserService);
     }
 
     private String[] getStaticResourceUrls() {
-        return new String[] {
+        return new String[]{
             "/",
             "/css/**",
             "/images/**",

@@ -1,10 +1,8 @@
 package ninjasul.service;
 
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 import ninjasul.domain.posts.Posts;
 import ninjasul.domain.posts.PostsRepository;
-import ninjasul.util.StringUtils;
 import ninjasul.web.dto.PostsListResponseDto;
 import ninjasul.web.dto.PostsResponseDto;
 import ninjasul.web.dto.PostsSaveRequestDto;

@@ -1,11 +1,9 @@
 package ninjasul.web;
 
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
+import ninjasul.config.auth.LoginUser;
 import ninjasul.config.auth.dto.SessionUser;
-import ninjasul.domain.user.User;
 import ninjasul.service.PostsService;
-import ninjasul.util.StringUtils;
 import ninjasul.web.dto.PostsResponseDto;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -22,9 +20,8 @@ public class IndexController {
     private final HttpSession httpSession;
 
     @GetMapping("/")
-    public String index(Model model) {
+    public String index(Model model, @LoginUser SessionUser user) {
         model.addAttribute("posts", postsService.findAllDesc());
-        SessionUser user = (SessionUser) httpSession.getAttribute("user");
 
         if (Objects.nonNull(user)) {
             model.addAttribute("userName", user.getName());
