@@ -43,8 +43,8 @@ JAR_NAME=$(ls -tr $REPOSITORY/ | grep *.jar | tail -n 1)
 # 2>&1: 표준 오류가 표준 output stream 을 통해 출력됨.
 echo "> JAR Name: $JAR_NAME"
 nohup java -jar \
--Dspring.config.location=classpath:/application.properties, \
-/home/ec2-user/app/application-oauth.properties, \
+-Dspring.config.location=classpath:/application.properties,\
+/home/ec2-user/app/application-oauth.properties,\
 /home/ec2-user/app/application-real-db.properties \
 -Dspring.profiles.active=real \
 $REPOSITORY/$JAR_NAME 2>&1 &
