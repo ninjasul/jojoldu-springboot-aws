@@ -41,6 +41,22 @@ deploy:
 
     wait-until-deployed: true
 
+  - provider: codedeploy
+    access_key_id: $AWS_ACCESS_KEY
+    secret_access_key: $AWS_SECRET_KEY
+    bucket: jojoldu-springboot-aws-service-build
+    key: jojoldu-springboot-aws.zip
+    bundle_type: zip
+    # CodeDeploy 애플리케이션
+    application: jojoldu-springboot-aws-service
+    # CodeDeploy 배포 그룹
+    deployment_group: jojoldu-springboot-aws-service-group
+    region: ap-northeast-2
+    skip_cleanup: true
+    acl: private
+    local_dir: deploy
+    wait-until-deployed: true
+
 # CI 실행 완료 시 메일로 알람
 notifications:
   email:
