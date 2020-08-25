@@ -52,9 +52,6 @@ deploy:
     # CodeDeploy 배포 그룹
     deployment_group: jojoldu-springboot-aws-service-group
     region: ap-northeast-2
-    skip_cleanup: true
-    acl: private
-    local_dir: deploy
     wait-until-deployed: true
 
 # CI 실행 완료 시 메일로 알람
