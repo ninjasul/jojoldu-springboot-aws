@@ -1,0 +1,48 @@
+language: java
+jdk:
+  - openjdk8
+
+# master 브랜치에 push 될 때만 수행
+branches:
+  only:
+    - master
+
+# Travis CI 서버의 Home
+cache:
+  directories:
+    - '$HOME/.m2/repository'
+    - '$HOME/.gradle'
+
+script: "./gradlew clean build"
+
+# before_deploy: deploy 명령어가 실행되기 전에 수행됨.
+# AWSCodeDeploy는 jar 파일을 인식하지 못하므로 jar + 설정파일 들을 모아 zip으로 압축
+# zip -r jojoldu-springboot-aws-service: zip 파일로 압축
+# mkdir -p deploy: deploy 라는 디렉토리를 Travis CI가 실행 중인 위치에 생성함. -p 옵션은 중간 경로가 존재하지 않을 때도 오류 없이 생성함.
+before_deploy:
+  - zip -r jojoldu-springboot-aws-service *
+  - mkdir -p deploy
+  - mv jojoldu-springboot-aws-service deploy/jojoldu-springboot-aws-service.zip
+
+# deploy: S3 파일 업로드 선언
+deploy:
+  - provider: s3
+    access_key_id: $AWS_ACCESS_KEY
+    secret_access_key: $AWS_SECRET_KEY
+    bucket: jojoldu-springboot-aws-service-build
+    region: ap-northeast-2
+    skip_cleanup: true
+
+    # zip 파일 접근을 private으로 설정
+    acl: private
+
+    # before_deploy 에서 생성한 디렉토리, S3로 전송할 파일들의 위치
+    local_dir: deploy
+
+    wait-until-deployed: true
+
+# CI 실행 완료 시 메일로 알람
+notifications:
+  email:
+    recipients:
+      - ninjasul@gmail.com
