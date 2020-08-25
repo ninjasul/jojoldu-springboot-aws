@@ -26,6 +26,9 @@ fi
 echo "> 새 애플리케이션 배포"
 JAR_NAME=$(ls -tr $REPOSITORY/*.jar | tail -n 1)
 
+echo "> $JAR_NAME 에 실행권한 추가"
+chomod +x $JAR_NAME
+
 # java -jar jar파일: 일반적인 자바프로그램 실행, 사용자가 터미널 접속을 끊을 때 애플리케이션도 같이 종료됨.
 # nohup java -jar: 애플리케이션 실행자가 터미널을 종료해도 애플리케이션은 계속 구동.
 # 2>&1: 표준 오류가 표준 output stream 을 통해 출력됨.
