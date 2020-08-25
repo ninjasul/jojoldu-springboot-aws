@@ -20,4 +20,4 @@ hooks:
       # timeout: 스크립트 60초 이상 수행 시 실패 처리
       timeout: 60
       # ec2-user 권한으로 실행
-      runas: ec-user2
+      runas: ec2-user
