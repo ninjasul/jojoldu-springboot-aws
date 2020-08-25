@@ -16,13 +16,15 @@ cache:
 script: "./gradlew clean build"
 
 # before_deploy: deploy 명령어가 실행되기 전에 수행됨.
-# AWSCodeDeploy는 jar 파일을 인식하지 못하므로 jar + 설정파일 들을 모아 zip으로 압축
-# zip -r jojoldu-springboot-aws-service: zip 파일로 압축
-# mkdir -p deploy: deploy 라는 디렉토리를 Travis CI가 실행 중인 위치에 생성함. -p 옵션은 중간 경로가 존재하지 않을 때도 오류 없이 생성함.
+# Travis CI는 특정 파일 단위로만 업로드 할 수 없으므로 deploy 디렉토리를 생성하여 해당 디렉토리를 배포.
 before_deploy:
-  - zip -r jojoldu-springboot-aws *
-  - mkdir -p deploy
-  - mv jojoldu-springboot-aws.zip deploy/jojoldu-springboot-aws.zip
+  - mkdir -p before-deploy
+  - cp scripts/deploy.sh before-deploy/
+  - cp appspec.yml before-deploy/
+  - cp build/libs/*.jar before-deploy/
+  - cd before-deploy && zip -r before-deploy *
+  - cd ../ && mkdir -p deploy
+  - mv before-deploy/before-deploy.zip deploy/jojoldu-springboot-aws.zip
 
 # deploy: S3 파일 업로드 선언
 deploy:
