@@ -13,7 +13,7 @@ cp $REPOSITORY/zip/*.jar $REPOSITORY/
 
 # pgrep 은 process id를 추출하는 명령어, -f 는 full process name 을 가져옴.
 echo "> 현재 구동중인 애플리케이션 pid 확인"
-CURRENT_PID=$(pgrep -fl jojoldu-springboot-aws.jar | grep jar | awk '{print $1}')
+CURRENT_PID=$(pgrep -fl jojoldu-springboot-aws*.jar | grep jar | awk '{print $1}')
 
 # -z "$CURRENT_PID": 현재 구동 중인 애플리케이션 pid의 길이가 0인 경우. 즉, 존재하지 않는 경우.
 echo "현재 구동 증인 애플리케이션 pid : $CURRENT_PID"
