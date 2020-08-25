@@ -8,13 +8,13 @@ cd $REPOSITORY/$PROJECT_NAME/
 echo "> Git Pull"
 git pull
 
-echo " > 프로젝트 Build 시작"
+echo "> 프로젝트 Build 시작"
 ./gradlew build
 
-echo " > stepl 디렉토리로 이동"
+echo "> stepl 디렉토리로 이동"
 cd $REPOSITORY
 
-echo " > Build 파일 복사"
+echo "> Build 파일 복사"
 cp $REPOSITORY/$PROJECT_NAME/build/libs/*.jar $REPOSITORY/
 
 # pgrep 은 process id를 추출하는 명령어, -f 는 full process name 을 가져옴.
@@ -42,9 +42,8 @@ JAR_NAME=$(ls -tr $REPOSITORY/ | grep *.jar | tail -n 1)
 # nohup java -jar: 애플리케이션 실행자가 터미널을 종료해도 애플리케이션은 계속 구동.
 # 2>&1: 표준 오류가 표준 output stream 을 통해 출력됨.
 echo "> JAR Name: $JAR_NAME"
+
 nohup java -jar \
--Dspring.config.location=classpath:/application.properties,\
-/home/ec2-user/app/application-oauth.properties,\
-/home/ec2-user/app/application-real-db.properties \
--Dspring.profiles.active=real \
-$REPOSITORY/$JAR_NAME 2>&1 &
+  -Dspring.config.location=classpath:/application.properties,/home/ec2-user/app/application-oauth.properties,/home/ec2-user/app/application-real-db.properties \
+  -Dspring.profiles.active=real \
+  $REPOSITORY/$JAR_NAME 2>&1 &

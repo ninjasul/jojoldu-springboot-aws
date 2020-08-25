@@ -2,8 +2,10 @@ package ninjasul.config.auth.dto;
 
 import lombok.Builder;
 import lombok.Getter;
+import lombok.extern.slf4j.Slf4j;
 import ninjasul.domain.user.Role;
 import ninjasul.domain.user.User;
+import ninjasul.util.StringUtils;
 
 import java.util.Map;
 
@@ -13,6 +15,7 @@ import java.util.Map;
  * - 이후 네이버 등 다른 소셜 로그인도 이 클래스를 사용함.
  */
 @Getter
+@Slf4j
 public class OAuthAttributes {
     private static final String NAVER_REGISTRATION_ID = "naver";
 
@@ -51,6 +54,8 @@ public class OAuthAttributes {
 
     private static OAuthAttributes ofNaver(String userNameAttributeName, Map<String, Object> attributes) {
         Map<String, Object> response = (Map<String, Object>) attributes.get("response");
+
+        log.info("ofNaver - response: {}", StringUtils.toPrettyJson(response));
 
         return OAuthAttributes.builder()
             .name((String) response.get("name"))
