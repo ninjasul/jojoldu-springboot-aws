@@ -22,7 +22,7 @@ script: "./gradlew clean build"
 before_deploy:
   - zip -r jojoldu-springboot-aws *
   - mkdir -p deploy
-  - mv jjojoldu-springboot-aws deploy/jojoldu-springboot-aws.zip
+  - mv jojoldu-springboot-aws deploy/jojoldu-springboot-aws.zip
 
 # deploy: S3 파일 업로드 선언
 deploy:
