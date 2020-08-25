@@ -3,11 +3,6 @@
 REPOSITORY=/home/ec2-user/app/step2
 PROJECT_NAME=jojoldu-springboot-aws
 
-cd $REPOSITORY/$PROJECT_NAME/
-
-echo "> 프로젝트 Build 시작"
-./gradlew build
-
 echo "> Build 파일 복사"
 cp $REPOSITORY/zip/*.jar $REPOSITORY/
 
@@ -38,7 +33,7 @@ echo "> JAR Name: $JAR_NAME"
 
 chmod +x $JAR_NAME
 
-ccho "> $JAR_NAME 실행"
+echo "> $JAR_NAME 실행"
 
 nohup java -jar \
   -Dspring.config.location=classpath:/application.properties,/home/ec2-user/app/application-oauth.properties,/home/ec2-user/app/application-real.properties,/home/ec2-user/app/application-real-db.properties \
