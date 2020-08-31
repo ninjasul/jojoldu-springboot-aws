@@ -3,7 +3,7 @@ version: 0.0
 os: linux
 files:
   - source: /
-    destination: /home/ec2-user/app/step2/zip/
+    destination: /home/ec2-user/app/step3/zip/
     overwrite: yes
 
 permissions:
@@ -14,10 +14,20 @@ permissions:
 
 # hooks: CodeDeploy 배포 단계에서 실행할 명령어를 지정함.
 hooks:
-  ApplicationStart:
-      # location: 배포파일 경로
-    - location: deploy.sh
-      # timeout: 스크립트 60초 이상 수행 시 실패 처리
+  AfterInstall:
+    - location: stop.sh
       timeout: 60
-      # ec2-user 권한으로 실행
+      runas: ec2-user
+
+    ApplicationStart:
+        # location: 배포파일 경로
+        - location: start.sh
+          # timeout: 스크립트 60초 이상 수행 시 실패 처리
+          timeout: 60
+          # ec2-user 권한으로 실행
+          runas: ec2-user
+
+    ValidateService:
+    - location: health.sh
+      timeout: 60
       runas: ec2-user
