@@ -1,4 +1,4 @@
-#! /usr/bin/env bash
+#!/usr/bin/env bash
 
 # stop.sh가 속해 있는 경로를 찾음.
 ABSPATH=$(readlink -f $0)

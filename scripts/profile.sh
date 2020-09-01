@@ -1,4 +1,4 @@
-#! /usr/bin/env bash
+#!/usr/bin/env bash
 
 # idle 상태인 profile 탐색
 function find_idle_profile() {
