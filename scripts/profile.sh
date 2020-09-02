@@ -1,7 +1,8 @@
 #!/usr/bin/env bash
 
 # idle 상태인 profile 탐색
-function find_idle_profile() {
+function find_idle_profile() 
+{
   RESPONSE_CODE=$(curl -s -o /dev/null -w "%{http_code}" http://localhost/profile)
 
   # 응답코드가 400 이상이면
@@ -25,10 +26,11 @@ function find_idle_profile() {
 }
 
 # idle 상태인 profile의 port 찾기
-function find_idle_port() {
+function find_idle_port() 
+{
   IDLE_PROFILE=$(find_idle_profile)
 
-  if [ ${IDLE_PROFILE} == real1 ]
+  if [ "${IDLE_PROFILE}" == "real1" ]
   then
     echo "8081"
   else
