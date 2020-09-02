@@ -56,9 +56,6 @@ deploy:
     region: ap-northeast-2
     wait-until-deployed: true
 
-after_failure:
-  - cat build_*.failure.txt
-
 # CI 실행 완료 시 메일로 알람
 notifications:
   email:
