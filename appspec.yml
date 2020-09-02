@@ -19,15 +19,15 @@ hooks:
       timeout: 60
       runas: ec2-user
 
-    ApplicationStart:
-        # location: 배포파일 경로
-        - location: start.sh
-          # timeout: 스크립트 60초 이상 수행 시 실패 처리
-          timeout: 60
-          # ec2-user 권한으로 실행
-          runas: ec2-user
+  ApplicationStart:
+    # location: 배포파일 경로
+    - location: start.sh
+    # timeout: 스크립트 60초 이상 수행 시 실패 처리
+      timeout: 60
+    # ec2-user 권한으로 실행
+      runas: ec2-user
 
-    ValidateService:
+  ValidateService:
     - location: health.sh
       timeout: 60
       runas: ec2-user
